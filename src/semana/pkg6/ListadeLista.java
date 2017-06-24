@@ -1,5 +1,6 @@
 package semana.pkg6;
 
+import java.util.Locale;
 import javax.swing.JOptionPane;
 
 public class ListadeLista {
@@ -116,18 +117,33 @@ public class ListadeLista {
 
             } else {
                 int cont = 0;
+                int contfinal = 0;
                 while (cont < size) {
 
-                    if (dato.substring(0, 1).compareTo(aux2.getDato()) == 0) {
+                    if (dato.substring(0, 1).compareTo(aux2.getDato()) < 0) {
+                        while (contfinal < size) {
+                            if (dato.substring(0, 1).compareTo(aux2.getDato()) == 0) {
+
+                                aux2.getLista().add(dato);
+
+                            }
+                            aux2 = aux2.getSig();
+                            contfinal++;
+                        }
+
+                    } else if (dato.substring(0, 1).compareTo(aux2.getSig().getDato()) > 0) {
+                        aux2.getSig().getSig().setAnt(nuevo);
+                        nuevo.setSig(aux2.getSig().getSig());
+                        aux2.setSig(nuevo);
+                        nuevo.setAnt(aux2);
+                        nuevo.setDato(dato.substring(0,1).toUpperCase(Locale.ITALY));
+                        nuevo.getLista().add(dato);
                         break;
 
-                    } else {
-                        aux2 = aux2.getSig();
                     }
+                    aux2 = aux2.getSig();
                     cont++;
                 }
-
-                aux2.getLista().add(dato);
 
             }
 
@@ -194,7 +210,7 @@ public class ListadeLista {
     public String search(String dato) {
 
         Nodo aux = cabeza;
-       
+
         int cont = 0;
         int cont2 = 0;
         int cont3 = 0;
@@ -214,7 +230,7 @@ public class ListadeLista {
             }
 
         } else {
-             
+
             while (cont < size) {
                 NodoD aux2 = aux.getLista().getCabeza();
 
@@ -222,7 +238,7 @@ public class ListadeLista {
                     while (cont2 < aux.getLista().getSize()) {
 
                         if (aux2.getDato().contains(dato)) {
-                            resultado =" "+ aux2.getDato() + resultado + " ";
+                            resultado = " " + aux2.getDato() + resultado + " ";
                             aux2 = aux2.getSig();
 
                         } else {

@@ -12,11 +12,12 @@ public class Semana6 {
         listaL.addSorted("Araya");
         listaL.addSorted("Arias");
         listaL.addSorted("!");
+        listaL.addSorted("eduardo");
         listaL.addSorted("E");
         listaL.addSorted("B");
-   
+
 ////        System.out.println(listaL.toString());
-        System.out.println(listaL.search("Ar"));
+        System.out.println(listaL.toString());
 
     }
 
